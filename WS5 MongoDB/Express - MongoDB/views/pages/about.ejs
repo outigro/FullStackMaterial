@@ -1,0 +1,53 @@
+<!-- Sivu on esimerkki EJS templatesta, jonne tuodaan renderöintiä varten dynaamista sisältöä -->
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Super Awesome</title>
+      <!-- CSS (load bootstrap from a CDN) -->
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+      <!-- huomaa, että staattista sisältöä (esim. css, js ja kuvat) voidaan hakea vain jos se on sallittu node.js serverin toimesta -->
+      <!-- eli koodissa pitää olla komento: app.use(express.static('public')); -->
+
+      <!-- HUOM! Bootstrapin vanha versio jyrää omat tyylit, eli ne eivät näy vaikka tulevat liitetyksi mukaan -->
+      <link rel="stylesheet" type="text/css" href="css/testi.css" />
+      <style>
+         body    { padding-top:50px; }
+      </style>
+   </head>
+   <body class="container">
+      <header>
+         <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <a class="navbar-brand" href="#">
+                  <span class="glyphicon glyphicon glyphicon-tree-deciduous"></span>
+                  EJS Is Fun
+                  </a>
+               </div>
+               <ul class="nav navbar-nav">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/users">Users</a></li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <main>
+         <div class="jumbotron">
+            <h1><%= new_heading %> </h1>
+            <p> <%= new_paragraph %> </p>
+            <!-- huomaa, että staattista sisältöä voidaan hakea vain jos se on sallittu node.js serverin toimesta -->
+            <!-- eli koodissa pitää olla komento: app.use(express.static('public')); -->
+
+            <img src="img/mean.jpg" />
+         </div>
+      </main>
+      <footer>
+         <p class="text-center text-muted">
+           <%= new_footer %></p>
+      </footer>
+   </body>
+</html>

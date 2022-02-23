@@ -1,0 +1,28 @@
+{
+  "ooid": "58297a7e5ce6837d92edd2ee",
+  "index": 0,
+  "guoid": "59565e4a-92c3-4092-b667-e1c6f2613290",
+  "isActive": false,
+  "balance": "$3§,503.16",
+  "picture":
+    "https://thumb1.shutterstock.com/display_pic_with_logo/244417/342536783/stock-vector-a-man-talking-to-microphone-at-interview-342536783.jpg",
+  "age": 34,
+  "eyeColor": "brown",
+  "name": { "first": "Bender", "last": "Mcgee" },
+  "company": "PLASTO",
+  "email": "bender.mcgee@plasto.net",
+  "phone": "+1 (915) 400-2087",
+  "address": "155 Hemlock Street, Lloyd, New Hampshire, 1713",
+  "about":
+    "Ut eiusmod ullamco qui non et. Culpa voluptate incoidoidunt consectetur commodo amet. Est adipisicing dolor excepteur eu tempor elit mollit tempor. Enim ea duis exercitation do prooident labore et tempor.",
+  "registered": "Tuesday, March 10, 2015 6:29 AM",
+  "latitude": "75.147737",
+  "longitude": "-95.100984",
+  "tags": ["fugiat", "sint", "consectetur", "incoidoidunt", "aliquip"],
+  "range": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "friends": [
+    { "oid": 0, "name": "Bruce Pace" },
+    { "oid": 1, "name": "Leila Morin" },
+    { "oid": 2, "name": "Laura Huber" }
+  ]
+}

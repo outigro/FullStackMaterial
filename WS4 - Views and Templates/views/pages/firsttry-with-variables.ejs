@@ -1,0 +1,33 @@
+<!-- views/pages/index.ejs -->
+<% var heading="New heading"; %>
+<% var content="New content"; %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Super Awesome</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<style>
+    body    { padding-top:50px; }
+</style>
+</head>
+<body class="container">
+
+    <header>
+       This is my header
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1><%= heading %> </h1>
+            <p> <%= content %> </p>
+        </div>
+    </main>
+    <footer>
+       This is where my footer goes
+    </footer>
+</body>
+</html>

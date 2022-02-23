@@ -1,0 +1,19 @@
+# What is NoSQL
+# explain mongoDB
+# show how to interact with mongoDB
+
+help
+show dbs
+db.help()
+
+var mydb = connect("localhost/laurea_workshop")
+mydb.getCollectionNames()
+mydb.createCollection("Student", {"name": String, "age": Number})
+
+var Student = mydb.getCollection("Student")
+Student.insert({'name': 'Armand', 'age':21})
+Student.findOne()
+Student.insert({'name': 'Bill', 'age':20})
+Student.insert({'name': 'Maria', 'age':21})
+Student.find({'age': 21})
+Student.remove({'name': 'Maria'})
