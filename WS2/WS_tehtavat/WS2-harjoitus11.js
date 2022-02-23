@@ -1,0 +1,28 @@
+var http = require("http");
+var fs = require("fs");
+
+//create a server object:
+http.createServer(function (request, response) {
+    if (request.url === "/") {
+        // Valitaan Content-type tarjoiltavan sisällön suhteen
+        response.writeHead(200, { "Content-Type": "text/plain" });
+
+        // Lähetetään tekstimuotoinen vastaus selaimelle
+        response.write("Nothing to see here..");
+    }
+    else if (request.url === "/frontpage") {
+        // Valitaan Content-type tarjoiltavan sisällön suhteen
+        response.writeHead(200, { "Content-Type": "text/HTML" });
+
+        var html = fs.readFileSync('./frontpage.html');
+        response.write(html);
+    }
+
+
+    else {
+        response.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+        response.write("Valitsemaasi sivua ei löydy ei vaikka kuinka etsin...");
+    }
+    response.end(); //HTTP vastaus päättyy
+})
+    .listen(8080);
