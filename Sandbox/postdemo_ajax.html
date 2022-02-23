@@ -1,0 +1,91 @@
+<html>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <style>
+    div {
+      margin: 10px;
+    }
+    form {
+      border: 1px solid lightgrey;
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <div>
+      <form method="POST" action="/kirjaudu">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="pass"
+            placeholder="Password"
+            name="pass"
+          />
+        </div>
+
+        <button type="button" id="button1" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+    <div id="status"></div>
+
+    <script>
+      // Varmistetaan että sivu on ladattu kokonaan ennenkuin lisäillään kuuntelijoita
+      window.onload = event => {
+        //   console.log("page is fully loaded");
+
+        var nappi = document.getElementById("button1");
+
+        nappi.addEventListener("click", () => {
+          var email = document.getElementById("email").value;
+          var pass = document.getElementById("pass").value;
+          //alert(email);
+          console.log(email, pass);
+
+          var xmlhttp = new XMLHttpRequest();
+
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("status").innerHTML = this.responseText;
+              console.log(this.responseText);
+            } else if (this.readyState == 4 && this.status == 301) {
+              document.getElementById("status").innerHTML = this.responseText;
+              console.log(this.responseText);
+            }
+          };
+
+          xmlhttp.open("POST", "/kirjaudu", true);
+          // This is for the form data
+          xmlhttp.setRequestHeader("Content-type", "application/json");
+
+          var data = {
+            email: email,
+            pass: pass
+          };
+
+          // TAI
+          console.log(data);
+          xmlhttp.send(JSON.stringify(data));
+          //xmlhttp.send("email=" + email + "&pass=" + pass);
+        });
+      };
+    </script>
+  </body>
+</html>
