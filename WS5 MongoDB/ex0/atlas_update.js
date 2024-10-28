@@ -1,54 +1,51 @@
-// Tuodaan moduuli ohjelmaan
+// Bring the module to the peogram
 const MongoClient = require("mongodb").MongoClient;
 
-// Määritellään salasana ja yhteysosoite tietokantaan (tämän saa MongoDB Atlas-palvelusta)
+// Introduce password and address to database (from MongoDB Atlas-service)
 const passwd = "demopass";
 const uri =
   "mongodb+srv://dbuser:" +
   passwd +
   "@cluster0-6tein.mongodb.net/test?retryWrites=true&w=majority";
 
-// Luodaan uusi yhteysolio käyttäen edellä määriteltyä URI:a sekä
-// tarvittavia parametreja
+// Make a new client object with URI and other parameters
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-// Määritellään tietokantaan tehtävä kyselu JSON-oliona. Tässä voi käyttää
-// apuna esim. MondoDB Compass -työkalua
+// Introduce query to database with a JSON-object. You can use MondoDB Compass -tool
 var query = {
   title: new RegExp("Jedi")
 };
 
-// Luodaan yhteys  tietokantaan nimeltä "sample_mflix" ja sieltä kokoelmaan "movies"
+// Connect to database "sample_mflix" and collection "movies"
 client.connect(err => {
   const collection = client.db("sample_mflix").collection("movies");
   if (err) throw err;
 
-  // Suoritetaan lisäys collection-olion avulla
+  // Do update with collection-object
   collection.updateMany(
     { title: new RegExp("Jedi") },
     { $set: { year: 1956 } },
     function(err, r) {
-      // Tulostetaan konsoliin tieto montako alkiota on lisätty (1)
-      console.log("Muutettiin rivejä: " + r.modifiedCount);
+      // Print to the console teh amount of inserted objects (1)
+      console.log("Changed lines: " + r.modifiedCount);
     }
   );
 
   var query = {
     title: new RegExp("Jedi")
   };
-  // Tehdään perään vielä tietokantahaku, jotta nähdään lisäyksen menneen perille
-  // Huomaa, että tietokantahaun ehdoksi on vaihdettu uuden lisätyn leffan nimi
-
+  // Chect with a query to be sure that database modification has happened (with the new name!)
+  
   collection
-    .find(query) // query muuttuja sisältää kyselyn
-    .limit(5) // rajoitetaan tulosjoukko 5:een
+    .find(query) // query variable has the query needed
+    .limit(5) // limit result group to 5
     .toArray(function(err, result) {
-      // Palautetaan tulokset JS-taulukkona
+      // Return results in JS-tabel
       if (err) throw err;
-      console.log(result); // Tulostetaan taulukko ruudulle
-      client.close(); // Suljetaan yhteys
+      console.log(result); // Print out table to the screen
+      client.close(); // Close connection
     });
 });
