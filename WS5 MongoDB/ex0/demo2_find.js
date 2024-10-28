@@ -13,7 +13,7 @@ MongoClient.connect(
   url,
   { useNewUrlParser: true },
   function(err, client) {
-    if (err) console.log("Tapahtui virhe!");
+    if (err) console.log("Not working!");
 
     const db = client.db(dbName);
     // Query can be copied from Compass
