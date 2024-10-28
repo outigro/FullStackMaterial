@@ -1,38 +1,36 @@
-// Tuodaan moduuli ohjelmaan
+// Bring the module to the program
 const MongoClient = require("mongodb").MongoClient;
 
-// Määritellään salasana ja yhteysosoite tietokantaan (tämän saa MongoDB Atlas-palvelusta)
+// Pass & connection address (from MongoDB Atlas-service)
 const passwd = "demopass";
 const uri =
   "mongodb+srv://dbuser:" +
   passwd +
   "@cluster0-6tein.mongodb.net/test?retryWrites=true&w=majority";
 
-// Luodaan uusi yhteysolio käyttäen edellä määriteltyä URI:a sekä
-// tarvittavia parametreja
+// Create new connection object 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-// Määritellään tietokantaan tehtävä kyselu JSON-oliona. Tässä voi käyttää
-// apuna esim. MondoDB Compass -työkalua
+// Introduce query to the database as JSON-object. You can use to help for example MondoDB Compass -tools
 var query = {
   title: new RegExp("Jedi")
 };
 
-// Luodaan yhteys  tietokantaan nimeltä "sample_mflix" ja sieltä kokoelmaan "movies"
+// Create connection to database with name "sample_mflix" and there collection  "movies"
 client.connect(err => {
   const collection = client.db("sample_mflix").collection("movies");
   if (err) throw err;
-  // Suoritetaan kysely collection-olion avulla
+  // Make the query with help of collection-object
   collection
-    .find(query) // query muuttuja sisältää kyselyn
-    .limit(5) // rajoitetaan tulosjoukko 5:een
+    .find(query) // query variable contains the query
+    .limit(5) // limit result as maximum 5
     .toArray(function(err, result) {
-      // Palautetaan tulokset JS-taulukkona
+      // Return results as JS-table
       if (err) throw err;
-      console.log(result); // Tulostetaan taulukko ruudulle
-      client.close(); // Suljetaan yhteys
+      console.log(result); // Print out results on the screen
+      client.close(); // Close connection
     });
 });
